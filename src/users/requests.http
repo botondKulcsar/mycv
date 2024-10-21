@@ -1,0 +1,49 @@
+### Create a new user
+POST http://localhost:3000/auth/signup
+Content-Type: application/json
+
+{
+   "email": "lazokklara@gmail.com",
+   "password": "string"
+}
+### Signin as an existing user
+POST http://localhost:3000/auth/signin
+Content-Type: application/json
+
+{
+   "email": "lazokklar@gmail.com",
+   "password": "string"
+}
+
+### Sign out
+POST http://localhost:3000/auth/signout
+
+
+###find a user with a give ID
+GET http://localhost:3000/auth/3
+
+###find all users
+GET http://localhost:3000/auth/
+
+###find all users with email
+GET http://localhost:3000/auth?email=kbot@riseup.net
+
+###delete a user with a give id
+DELETE http://localhost:3000/auth/1
+
+###update a user with id
+PATCH http://localhost:3000/auth/1
+Content-Type: application/json
+
+{
+    "email": "bkulcsar@gmx.com"
+}
+
+###set a color
+GET http://localhost:3000/auth/colors/red
+
+###get the color
+GET http://localhost:3000/auth/colors
+
+###get the currently signed in user
+GET http://localhost:3000/auth/whoami
