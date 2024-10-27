@@ -3,7 +3,7 @@ POST http://localhost:3000/auth/signup
 Content-Type: application/json
 
 {
-   "email": "lazokklara@gmail.com",
+   "email": "admin@gmail.com",
    "password": "string"
 }
 ### Signin as an existing user
@@ -11,7 +11,7 @@ POST http://localhost:3000/auth/signin
 Content-Type: application/json
 
 {
-   "email": "lazokklara@gmail.com",
+   "email": "admin@gmail.com",
    "password": "string"
 }
 
