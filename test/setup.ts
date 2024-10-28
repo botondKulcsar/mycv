@@ -4,5 +4,7 @@ import { join } from 'path';
 global.beforeEach(async () => {
   try {
     await rm(join(__dirname, '..', 'test.sqlite'));
-  } catch (error) {}
+  } catch (error) {
+    console.error('error occured while deleting test.sqlite:', error.message);
+  }
 });
