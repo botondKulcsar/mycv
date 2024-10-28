@@ -2,14 +2,34 @@ import { DataSourceOptions, DataSource } from 'typeorm';
 
 const dbConfig = {
   type: 'sqlite',
-  database: process.env.NODE_ENV == 'development' ? 'db.sqlite' : 'test.sqlite',
+
   entities: [__dirname + '/**/*.entity{.ts,.js}'],
   synchronize: false,
   migrations: ['migrations/*.js'],
-  migrationsRun: process.env.NODE_ENV == 'development' ? false : true,
-} as DataSourceOptions;
+};
 
-export const AppDataSource = new DataSource(dbConfig);
+switch (process.env.NODE_ENV) {
+  case 'development':
+    dbConfig['database'] = 'db.sqlite';
+    dbConfig['migrationsRun'] = false;
+    break;
+  case 'test':
+    dbConfig['database'] = 'test.db';
+    dbConfig['migrationsRun'] = true;
+    break;
+  case 'production':
+    dbConfig.type = 'postgres';
+    dbConfig['url'] = process.env.DATABASE_URL;
+    dbConfig['migrationsRun'] = true;
+    dbConfig['ssl'] = {
+      rejectUnauthorized: false,
+    };
+    break;
+  default:
+    break;
+}
+
+export const AppDataSource = new DataSource(dbConfig as DataSourceOptions);
 
 AppDataSource.initialize()
   .then(() => {
