@@ -5,6 +5,7 @@ const dbConfig = {
   database: process.env.NODE_ENV == 'development' ? 'db.sqlite' : 'test.sqlite',
   entities: [__dirname + '/**/*.entity{.ts,.js}'],
   synchronize: process.env.NODE_ENV == 'development' ? false : true,
+  migrations: ['migrations/*.js'],
 } as DataSourceOptions;
 
 export const AppDataSource = new DataSource(dbConfig);
